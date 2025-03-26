@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5797ac1db4b944242a36c65070913ee5, type: 3}
+  m_Name: CakesDetail
+  m_EditorClassIdentifier: 
+  cakes:
+  - {fileID: 4600551883623566300, guid: 31c7406bc6cb2405db8553481e7ad95a, type: 3}
+  - {fileID: 680506943711626075, guid: aad6f432acef44f5ca81ff65754c2f5d, type: 3}
+  - {fileID: 5082694799070104409, guid: acbd2816bbc7a441488209badf2f1218, type: 3}
+  - {fileID: 8153061170825546879, guid: fc4f22372f44c4973ab36428c028ef26, type: 3}
+  - {fileID: 8394188750407322728, guid: 13ffbaadd6df541b79376ba2a148e593, type: 3}
+  - {fileID: 6281879428310826555, guid: ddea8329995fd4a47b04608c08cd1c93, type: 3}

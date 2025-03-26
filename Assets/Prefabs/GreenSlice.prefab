@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4148105487655256}
   m_Layer: 0
-  m_Name: Green
+  m_Name: GreenSlice
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
