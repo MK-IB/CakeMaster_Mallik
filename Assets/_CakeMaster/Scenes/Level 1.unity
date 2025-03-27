@@ -1231,7 +1231,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 469134195}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
@@ -2659,7 +2659,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1243402469}
   m_Layer: 0
-  m_Name: Target Panel
+  m_Name: Goal Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2900,6 +2900,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1272069017}
+  - component: {fileID: 1272069019}
+  - component: {fileID: 1272069018}
   m_Layer: 0
   m_Name: CONTROLLERS
   m_TagString: Untagged
@@ -2922,6 +2924,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1589848418}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1272069018
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1272069016}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c087260d032d4641a19c169c5bf54e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HUD: {fileID: 469134195}
+  winPanel: {fileID: 0}
+  failPanel: {fileID: 0}
+  goalText: {fileID: 1795407776}
+  goalCakeIcon: {fileID: 868684731}
+  cakeIconWorldPos: {x: 0, y: 0, z: 0}
+--- !u!114 &1272069019
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1272069016}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e1960c23e18b4ee490e4e0a5a5fdf46, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  goal: 8
 --- !u!1001 &1330951756
 PrefabInstance:
   m_ObjectHideFlags: 0

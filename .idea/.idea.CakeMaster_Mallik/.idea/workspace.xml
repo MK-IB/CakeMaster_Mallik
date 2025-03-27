@@ -5,21 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c8aae103-4afd-4511-9541-a5f57987d843" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.CakeMaster_Mallik/.idea/indexLayout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.CakeMaster_Mallik/.idea/indexLayout.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.CakeMaster_Mallik/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.CakeMaster_Mallik/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Fonts/PerfectDOSVGA437.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Fonts/PerfectDOSVGA437.ttf.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Fonts/LiberationSans SDF.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Fonts/LiberationSans SDF.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Blue.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Blue.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Brown.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Brown.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Green.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Green.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Pink.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Pink.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Red.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Red.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Yellow.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Yellow.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/CakesDetail.asset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/CakesDetail.asset.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/_CakeMaster/Scenes/Level 1.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_CakeMaster/Scenes/Level 1.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/_CakeMaster/_Scripts/ElementRelated/CakeElement.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_CakeMaster/_Scripts/ElementRelated/CakeElement.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_CakeMaster/_Scripts/GameplayRelated/GridCell.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_CakeMaster/_Scripts/GameplayRelated/GridCell.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/_CakeMaster/_Scripts/GameplayRelated/GridSelection.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_CakeMaster/_Scripts/GameplayRelated/GridSelection.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -108,7 +101,7 @@
       <option name="presentableId" value="Default" />
       <updated>1743008391791</updated>
       <workItem from="1743008394663" duration="6865000" />
-      <workItem from="1743053229145" duration="13424000" />
+      <workItem from="1743053229145" duration="17491000" />
     </task>
     <servers />
   </component>

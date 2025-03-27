@@ -1,9 +1,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using _CakeMaster._Scripts.ControllerRelated;
 using _CakeMaster._Scripts.GameplayRelated;
 using UnityEngine;
-using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 public class CakeElement : MonoBehaviour
@@ -29,9 +29,10 @@ public class CakeElement : MonoBehaviour
             slices[i].SetActive(true);
             activatedSlices.Add(slices[i]);
         }
-        transform.localEulerAngles = new Vector3(0, -count*30, 0);
+        RotateCakeToAlign(count);
         return count;
     }
+    void RotateCakeToAlign(int count) => transform.localEulerAngles = new Vector3(0, -count*30, 0);
 
     public int GetEmptySpaces()
     {
@@ -60,6 +61,7 @@ public class CakeElement : MonoBehaviour
             if(slices[i].activeSelf)
                 activatedSlices.Add(slices[i]);
         }
+        RotateCakeToAlign(activatedSlices.Count);
     }
 
     public void DeactivateSlices(int num)
@@ -76,22 +78,31 @@ public class CakeElement : MonoBehaviour
         activatedSlices[activatedSlices.Count - 1].SetActive(false);
         UpdateActivatedSlices();
     }
-    
-    
 
-    public IEnumerator MoveSlicesToTarget(int requiredSlices, Transform cake)
+    public void AnimateCakeOnSorted()
     {
-        CakeElement cakeElement = cake.GetComponent<CakeElement>();
-        int activatedSlicesCount = cakeElement.GetActivatedSlices() - 1;
-        if(requiredSlices <= activatedSlices.Count)
-            for (int i = 0; i < activatedSlices.Count; i++)
-            {
-                Transform slice = activatedSlices[i].transform;
-                slice.SetParent(cake);
-                slice.localPosition = Vector3.zero;
-                slice.localEulerAngles = Vector3.up * (30 + activatedSlicesCount * 60);
-            }
-
-        yield return null;
+        StartCoroutine(MoveAlongCurve(transform, transform.position, UIController.instance.cakeIconWorldPos, 0.35f));
     }
+    
+    IEnumerator MoveAlongCurve(Transform obj, Vector3 start, Vector3 end, float duration)
+    {
+        // Midpoint for curve bending sideways along X axis
+        Vector3 control = (start + end) / 2 + Vector3.right * 2f; // Right or left depending on direction
+
+        float elapsed = 0f;
+        while (elapsed < duration)
+        {
+            float t = elapsed / duration;
+            Vector3 position = Mathf.Pow(1 - t, 2) * start +
+                               2 * (1 - t) * t * control +
+                               Mathf.Pow(t, 2) * end;
+
+            obj.position = position;
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
+
+        obj.position = end;
+    }
+
 }
