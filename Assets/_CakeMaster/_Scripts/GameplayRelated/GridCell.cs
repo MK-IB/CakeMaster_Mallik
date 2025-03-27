@@ -25,7 +25,8 @@ namespace _CakeMaster._Scripts.GameplayRelated
         {
             List<GameObject> cakes = _cakesdetail.cakes;
             GameObject target = cakes[Random.Range(0, cakes.Count)];
-            GameObject fullCake = Instantiate(target, transform.position, Quaternion.identity);
+            Vector3 spawnPos = transform.position + Vector3.up * 0.3f;
+            GameObject fullCake = Instantiate(target, spawnPos, Quaternion.identity);
             //Debug.Log("FULL CAKE" + fullCake.name);
             CakeElement cakeElement = fullCake.GetComponent<CakeElement>();
             _cakeColor = cakeElement.cakeColor;
