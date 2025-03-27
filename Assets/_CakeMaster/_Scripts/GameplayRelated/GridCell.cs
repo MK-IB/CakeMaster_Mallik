@@ -10,7 +10,7 @@ namespace _CakeMaster._Scripts.GameplayRelated
         private CakesDetail _cakesdetail;
         private int _activeSlicesNumber;
         private CakeColors _cakeColor;
-
+        public CakeElement containedCake;
         public CakeColors CakeColor
         {
             get => _cakeColor;
@@ -28,14 +28,14 @@ namespace _CakeMaster._Scripts.GameplayRelated
             Vector3 spawnPos = transform.position + Vector3.up * 0.3f;
             GameObject fullCake = Instantiate(target, spawnPos, Quaternion.identity);
             //Debug.Log("FULL CAKE" + fullCake.name);
-            CakeElement cakeElement = fullCake.GetComponent<CakeElement>();
-            _cakeColor = cakeElement.cakeColor;
-            _activeSlicesNumber = cakeElement.ActivateSlices();
+            containedCake = fullCake.GetComponent<CakeElement>();
+            _cakeColor = containedCake.cakeColor;
+            _activeSlicesNumber = containedCake.ActivateSlices();
         }
 
-        public void IsSelected()
+        public void ToggleHighlighter()
         {
-            highlighter.SetActive(true);
+            highlighter.SetActive(!highlighter.activeSelf);
         }
     }
 }
