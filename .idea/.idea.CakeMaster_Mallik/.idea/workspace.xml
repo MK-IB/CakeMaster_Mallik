@@ -5,14 +5,24 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c8aae103-4afd-4511-9541-a5f57987d843" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.CakeMaster_Mallik/.idea/.idea.CakeMaster_Mallik.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.CakeMaster_Mallik/.idea/contentModel.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.CakeMaster_Mallik/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.CakeMaster_Mallik/.idea/projectSettingsUpdater.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.CakeMaster_Mallik/.idea/projectSettingsUpdater.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.CakeMaster_Mallik/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.CakeMaster_Mallik/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.CakeMaster_Mallik/riderModule.iml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Fonts/LiberationSans SDF.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Fonts/LiberationSans SDF.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Materials/circle_ADD.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Materials/circle_ADD.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Materials/cloud_2x2_default_AB.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Materials/cloud_2x2_default_AB.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Materials/nova_6x3_spritesheet_ADD.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Materials/nova_6x3_spritesheet_ADD.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/PrefabInstance/SmokeExplosionWhite 1.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/PrefabInstance/SmokeExplosionWhite 1.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Blue.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Blue.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Brown.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Brown.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Green.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Green.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Red.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Red.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/_CakeMaster/Scenes/Level 1.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_CakeMaster/Scenes/Level 1.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/_CakeMaster/_Scripts/ElementRelated/CakeElement.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_CakeMaster/_Scripts/ElementRelated/CakeElement.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_CakeMaster/_Scripts/GameplayRelated/GridCell.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_CakeMaster/_Scripts/GameplayRelated/GridCell.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/_CakeMaster/_Scripts/GameplayRelated/GridSelection.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_CakeMaster/_Scripts/GameplayRelated/GridSelection.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -24,6 +34,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Assets/_CakeMaster/_Scripts/ControllerRelated/MainController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/_CakeMaster/_Scripts/GameplayRelated/GridCell.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/_CakeMaster/_Scripts/GameplayRelated/GridSelection.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
@@ -35,6 +46,12 @@
       </list>
     </option>
   </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 6
+}]]></component>
   <component name="ProjectId" id="2urDIiGrU8e7R5L67nG5nZHUzQ0" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -42,11 +59,14 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "RunOnceActivity.git.unshallow": "true",
     "git-widget-placeholder": "main",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)"
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
   <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
@@ -93,7 +113,7 @@
       <method v="2" />
     </configuration>
   </component>
-  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="false" />
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <created>1743008391791</created>
@@ -102,6 +122,7 @@
       <updated>1743008391791</updated>
       <workItem from="1743008394663" duration="6865000" />
       <workItem from="1743053229145" duration="17491000" />
+      <workItem from="1743150940765" duration="22291000" />
     </task>
     <servers />
   </component>

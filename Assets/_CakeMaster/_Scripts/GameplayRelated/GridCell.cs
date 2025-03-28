@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using _CakeMaster._Scripts.ControllerRelated;
 using _CakeMaster._Scripts.ElementRelated;
 using UnityEngine;
 
@@ -10,6 +11,9 @@ namespace _CakeMaster._Scripts.GameplayRelated
         private CakesDetail _cakesdetail;
         private int _activeSlicesNumber;
         private CakeColors _cakeColor;
+        private Animator _animator;
+        private GridSelection _gridSelection;
+        
         public CakeElement containedCake;
         public CakeColors CakeColor
         {
@@ -17,8 +21,32 @@ namespace _CakeMaster._Scripts.GameplayRelated
         }
         void Start()
         {
-            _cakesdetail = transform.root.GetComponent<GridSelection>().cakesDetail;
+            _gridSelection = transform.root.GetComponentInParent<GridSelection>();
+            _cakesdetail = _gridSelection.cakesDetail;
             InitiateCakes();
+        }
+        private void OnEnable()
+        {
+            MainController.GameStateChanged += GameManager_GameStateChanged;
+        }
+        private void OnDisable()
+        {
+            MainController.GameStateChanged -= GameManager_GameStateChanged;
+        }
+        void GameManager_GameStateChanged(GameState newState, GameState oldState)
+        {
+            if (newState == GameState.Refilling)
+            {
+                if(containedCake == null)
+                    _gridSelection.RefillGridCell(this);
+                else if(!containedCake.gameObject.activeInHierarchy || containedCake.GetActivatedSlices() == 0)
+                {
+                    Destroy(containedCake.gameObject);
+                    _gridSelection.RefillGridCell(this);
+                }
+                
+            }
+
         }
 
         void InitiateCakes()
@@ -29,13 +57,22 @@ namespace _CakeMaster._Scripts.GameplayRelated
             GameObject fullCake = Instantiate(target, spawnPos, Quaternion.identity);
             //Debug.Log("FULL CAKE" + fullCake.name);
             containedCake = fullCake.GetComponent<CakeElement>();
-            _cakeColor = containedCake.cakeColor;
-            _activeSlicesNumber = containedCake.ActivateSlices();
+            SetupContainedCake();
+            //containedCake.SetFxColor(_gridSelection.GetCakeColor(_cakeColor));
         }
 
-        public void ToggleHighlighter()
+        public void SetupContainedCake()
         {
-            highlighter.SetActive(!highlighter.activeSelf);
+            _cakeColor = containedCake.cakeColor;
+            _activeSlicesNumber = containedCake.ActivateSlices();
+            _animator = containedCake.GetComponent<Animator>();
+        }
+
+        public void ToggleHighlighter(bool state)
+        {
+            highlighter.SetActive(state);
+            _animator.SetBool("scaleDown", state);
+            if(state)containedCake.SelectionFx();
         }
     }
 }

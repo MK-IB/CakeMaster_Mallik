@@ -3,12 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using _CakeMaster._Scripts.ControllerRelated;
 using _CakeMaster._Scripts.GameplayRelated;
+using DG.Tweening;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
 public class CakeElement : MonoBehaviour
 {
     [SerializeField] private List<GameObject> slices;
+    [SerializeField] private ParticleSystem selectionFx;
     private List<GameObject> activatedSlices = new List<GameObject>();
     public CakeColors cakeColor; 
     void Awake()
@@ -29,10 +31,21 @@ public class CakeElement : MonoBehaviour
             slices[i].SetActive(true);
             activatedSlices.Add(slices[i]);
         }
-        RotateCakeToAlign(count);
+        StartCoroutine(RotateCakeToAlign(count));
         return count;
     }
-    void RotateCakeToAlign(int count) => transform.localEulerAngles = new Vector3(0, -count*30, 0);
+
+    public void SetFxColor(Color color)
+    {
+        // ParticleSystem.MainModule mainModule = selectionFx.main;
+        // mainModule.startColor = new ParticleSystem.MinMaxGradient(color);
+        selectionFx.startColor = color;
+    }
+    IEnumerator RotateCakeToAlign(int count)
+    {
+        yield return new WaitForSeconds(0.35f);
+        transform.DORotate(new Vector3(0, -count * 30, 0), 0.35f);
+    }
 
     public int GetEmptySpaces()
     {
@@ -44,11 +57,13 @@ public class CakeElement : MonoBehaviour
         return activatedSlices.Count;
     }
 
-    public void AddSlices(int num)
+    public void AddSlices(int num, Vector3 position)
     {
         for (int i = 0; i < num; i++)
         {
-            slices[activatedSlices.Count + i].SetActive(true);
+            GameObject toActivate = slices[activatedSlices.Count + i];
+            toActivate.SetActive(true);
+            toActivate.transform.DOMove(position, 0.35f).From();
         }
         UpdateActivatedSlices();
     }
@@ -61,7 +76,7 @@ public class CakeElement : MonoBehaviour
             if(slices[i].activeSelf)
                 activatedSlices.Add(slices[i]);
         }
-        RotateCakeToAlign(activatedSlices.Count);
+        StartCoroutine(RotateCakeToAlign(activatedSlices.Count));
     }
 
     public void DeactivateSlices(int num)
@@ -75,6 +90,7 @@ public class CakeElement : MonoBehaviour
 
     public void DeactivateOneSlice()
     {
+        if (activatedSlices.Count <= 0) return;
         activatedSlices[activatedSlices.Count - 1].SetActive(false);
         UpdateActivatedSlices();
     }
@@ -83,11 +99,15 @@ public class CakeElement : MonoBehaviour
     {
         StartCoroutine(MoveAlongCurve(transform, transform.position, UIController.instance.cakeIconWorldPos, 0.35f));
     }
+
+    public void SelectionFx() => selectionFx.Play();
     
     IEnumerator MoveAlongCurve(Transform obj, Vector3 start, Vector3 end, float duration)
     {
         // Midpoint for curve bending sideways along X axis
-        Vector3 control = (start + end) / 2 + Vector3.right * 2f; // Right or left depending on direction
+        Vector3 direction = (Random.value > 0.5f) ? Vector3.right : Vector3.left;
+        Vector3 control = (start + end) / 2 + direction * 2f;
+
 
         float elapsed = 0f;
         while (elapsed < duration)
@@ -103,6 +123,9 @@ public class CakeElement : MonoBehaviour
         }
 
         obj.position = end;
+        gameObject.SetActive(false);
+        yield return new WaitForSeconds(0.35f);
+        MainController.instance.SetActionType(GameState.Refilling);
     }
 
 }
