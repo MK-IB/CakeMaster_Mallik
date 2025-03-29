@@ -12,7 +12,7 @@ namespace _CakeMaster._Scripts.ControllerRelated
 
         [SerializeField] private GameObject HUD;
         [SerializeField] private GameObject winPanel, failPanel;
-        [SerializeField] private TextMeshProUGUI goalText;
+        [SerializeField] private TextMeshProUGUI goalText, movesText;
         [SerializeField] private Image goalCakeIcon;
         public Vector3 cakeIconWorldPos;
 
@@ -42,6 +42,12 @@ namespace _CakeMaster._Scripts.ControllerRelated
         public void UpdateGoalUi(int val)
         {
             goalText.text = val.ToString();
+        }
+
+        public void UpdateMovesUi(int val)
+        {
+            Debug.Log("UpdateMovesUi");
+            movesText.text = val.ToString();
         }
         
         /*private void OnEnable()

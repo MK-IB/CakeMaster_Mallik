@@ -1696,8 +1696,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 221.6, y: -25}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchoredPosition: {x: 221.6, y: -37.61113}
+  m_SizeDelta: {x: 200, y: 75.2221}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &657075853
 MonoBehaviour:
@@ -1721,8 +1721,9 @@ MonoBehaviour:
       m_Calls: []
   m_text: Level 1
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 548cd3c8439554ca29efb66f41668e47, type: 2}
+  m_sharedMaterial: {fileID: -357707939743867784, guid: 548cd3c8439554ca29efb66f41668e47,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1746,7 +1747,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 44.75
+  m_fontSize: 47.75
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -2541,8 +2542,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -31.8298}
-  m_SizeDelta: {x: 158.6622, y: 82.7254}
+  m_AnchoredPosition: {x: 0, y: -47.0424}
+  m_SizeDelta: {x: 158.6622, y: 121.6551}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1028830891
 MonoBehaviour:
@@ -2564,10 +2565,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 15
+  m_text: '#'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: d06bf1a64ef5b4e0088af62658da4d01, type: 2}
-  m_sharedMaterial: {fileID: 6211987810932012384, guid: d06bf1a64ef5b4e0088af62658da4d01,
+  m_fontAsset: {fileID: 11400000, guid: 548cd3c8439554ca29efb66f41668e47, type: 2}
+  m_sharedMaterial: {fileID: -357707939743867784, guid: 548cd3c8439554ca29efb66f41668e47,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -2922,8 +2923,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -87.9}
-  m_SizeDelta: {x: 158.6622, y: 39.6656}
+  m_AnchoredPosition: {x: 0, y: -83.41221}
+  m_SizeDelta: {x: 158.6622, y: 56.6055}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1264255444
 MonoBehaviour:
@@ -2947,8 +2948,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: MOVES
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: d06bf1a64ef5b4e0088af62658da4d01, type: 2}
-  m_sharedMaterial: {fileID: 6211987810932012384, guid: d06bf1a64ef5b4e0088af62658da4d01,
+  m_fontAsset: {fileID: 11400000, guid: 548cd3c8439554ca29efb66f41668e47, type: 2}
+  m_sharedMaterial: {fileID: -357707939743867784, guid: 548cd3c8439554ca29efb66f41668e47,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -2973,13 +2974,13 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 35.5
+  m_fontSize: 35.95
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 1
+  m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -3073,6 +3074,7 @@ MonoBehaviour:
   winPanel: {fileID: 0}
   failPanel: {fileID: 0}
   goalText: {fileID: 1795407776}
+  movesText: {fileID: 1028830891}
   goalCakeIcon: {fileID: 868684731}
   cakeIconWorldPos: {x: 0, y: 0, z: 0}
 --- !u!114 &1272069019
@@ -3088,6 +3090,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   goal: 8
+  moves: 15
 --- !u!114 &1272069020
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4142,8 +4145,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -28, y: 27}
-  m_SizeDelta: {x: 116.6437, y: 82.7254}
+  m_AnchoredPosition: {x: -28.3, y: 48.33955}
+  m_SizeDelta: {x: 116.6437, y: 96.6791}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1795407776
 MonoBehaviour:
@@ -4167,8 +4170,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 10
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: d06bf1a64ef5b4e0088af62658da4d01, type: 2}
-  m_sharedMaterial: {fileID: 6211987810932012384, guid: d06bf1a64ef5b4e0088af62658da4d01,
+  m_fontAsset: {fileID: 11400000, guid: f0571f6fcfcee48298b89ad762cc7215, type: 2}
+  m_sharedMaterial: {fileID: -357707939743867784, guid: f0571f6fcfcee48298b89ad762cc7215,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -4193,10 +4196,10 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 72
-  m_fontSizeBase: 36
+  m_fontSize: 76.5
+  m_fontSizeBase: 76.5
   m_fontWeight: 400
-  m_enableAutoSizing: 1
+  m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 1
@@ -4487,7 +4490,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 0, y: -46}
-  m_SizeDelta: {x: 158.6622, y: 39.6656}
+  m_SizeDelta: {x: 158.6622, y: 65.9613}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1900840548
 MonoBehaviour:
@@ -4511,8 +4514,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: GOAL
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: d06bf1a64ef5b4e0088af62658da4d01, type: 2}
-  m_sharedMaterial: {fileID: 6211987810932012384, guid: d06bf1a64ef5b4e0088af62658da4d01,
+  m_fontAsset: {fileID: 11400000, guid: 548cd3c8439554ca29efb66f41668e47, type: 2}
+  m_sharedMaterial: {fileID: -357707939743867784, guid: 548cd3c8439554ca29efb66f41668e47,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -4537,7 +4540,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 35.5
+  m_fontSize: 41.9
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -5005,6 +5008,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selectedCells: []
   cakesDetail: {fileID: 11400000, guid: 812e6cea52e2942b2ba35634cc8e3eab, type: 2}
+  blue: {r: 0, g: 0.75058144, b: 0.8301887, a: 1}
+  green: {r: 0.8862476, g: 0.8962264, b: 0.038047332, a: 1}
+  red: {r: 1, g: 0, b: 0, a: 1}
+  brown: {r: 0.3584906, g: 0.12361743, b: 0, a: 1}
   gridCells:
   - {fileID: 4681645218695921}
   - {fileID: 698972964}

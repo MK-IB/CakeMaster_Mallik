@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using _CakeMaster._Scripts.ControllerRelated;
 using _CakeMaster._Scripts.ElementRelated;
@@ -41,13 +42,21 @@ namespace _CakeMaster._Scripts.GameplayRelated
                     _gridSelection.RefillGridCell(this);
                 else if(!containedCake.gameObject.activeInHierarchy || containedCake.GetActivatedSlices() == 0)
                 {
-                    Destroy(containedCake.gameObject);
-                    _gridSelection.RefillGridCell(this);
+                    StartCoroutine(CheckRefill());
                 }
                 
             }
 
         }
+
+        IEnumerator CheckRefill()
+        {
+            Destroy(containedCake.gameObject);
+            yield return null;
+            _gridSelection.RefillGridCell(this);
+            Debug.Log($"EMPTY GRID = {transform.name}");
+        }
+        
 
         void InitiateCakes()
         {
@@ -57,6 +66,7 @@ namespace _CakeMaster._Scripts.GameplayRelated
             GameObject fullCake = Instantiate(target, spawnPos, Quaternion.identity);
             //Debug.Log("FULL CAKE" + fullCake.name);
             containedCake = fullCake.GetComponent<CakeElement>();
+            _activeSlicesNumber = containedCake.ActivateSlices();
             SetupContainedCake();
             //containedCake.SetFxColor(_gridSelection.GetCakeColor(_cakeColor));
         }
@@ -64,7 +74,7 @@ namespace _CakeMaster._Scripts.GameplayRelated
         public void SetupContainedCake()
         {
             _cakeColor = containedCake.cakeColor;
-            _activeSlicesNumber = containedCake.ActivateSlices();
+            _activeSlicesNumber = containedCake.GetActivatedSlices();
             _animator = containedCake.GetComponent<Animator>();
         }
 

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,13 +23,42 @@ namespace _CakeMaster._Scripts.GameplayRelated
     {
         public List<GridCell> selectedCells = new List<GridCell>();
         public CakesDetail cakesDetail;
-        //public Color blue, green, red, brown;
+        public Color blue, green, red, brown;
         [SerializeField] private List<GridCell> gridCells;
-        
         private List<List<GridCell>> gridCellsList = new List<List<GridCell>>();
+        
+        private LineRenderer lineRenderer;
+        Dictionary<CakeColors, Color> colorMapping = new Dictionary<CakeColors, Color>();
         void Awake()
         {
             ArrangeGridsInArray();
+        }
+
+        private void Start()
+        {
+            if (lineRenderer == null)
+            {
+                lineRenderer = gameObject.AddComponent<LineRenderer>();
+            }
+            colorMapping.Add(CakeColors.Blue, blue);
+            colorMapping.Add(CakeColors.Green, green);
+            colorMapping.Add(CakeColors.Red, red);
+            colorMapping.Add(CakeColors.Brown, brown);
+            SetupLineRenderer();
+        }
+        void SetupLineRenderer()
+        {
+            lineRenderer.positionCount = 0;
+            lineRenderer.startWidth = 0.2f;
+            lineRenderer.endWidth = 0.2f;
+            lineRenderer.material = new Material(Shader.Find("Sprites/Default"));
+            SetupLineColor(Color.yellow);
+        }
+
+        void SetupLineColor(Color color)
+        {
+            lineRenderer.startColor = color;
+            lineRenderer.endColor = color;
         }
 
         void ArrangeGridsInArray()
@@ -42,7 +72,7 @@ namespace _CakeMaster._Scripts.GameplayRelated
                 if (columnCount >= 7)
                 {
                     gridCellsList.Add(columnList);
-                    Debug.Log($"columnCount: {columnList.Count}");
+                    //Debug.Log($"columnCount: {columnList.Count}");
                     columnList = new List<GridCell>();
                     columnCount = 0;
                 }
@@ -84,18 +114,29 @@ namespace _CakeMaster._Scripts.GameplayRelated
                         GridCell lastSelectedCell = selectedCells[selectedCells.Count - 1];
                         float distance = Vector3.Distance(lastSelectedCell.transform.position, gridCell.transform.position);
                 
-                        if (distance > 2.0f)
+                        if (distance > 2.5f)
                             return;
                     }
 
                     selectedCells.Add(gridCell);
                     gridCell.ToggleHighlighter(true);
+                    UpdateLineRenderer();
                 }
+            }
+        }
+        void UpdateLineRenderer()
+        {
+            SetupLineColor(colorMapping[currentCakeColor]);
+            lineRenderer.positionCount = selectedCells.Count;
+            for (int i = 0; i < selectedCells.Count; i++)
+            {
+                lineRenderer.SetPosition(i, selectedCells[i].transform.position);
             }
         }
 
         IEnumerator SortSelectedCells()
         {
+            lineRenderer.positionCount = 0;
             if (selectedCells.Count < 2)
             {
                 for(int i = 0; i < selectedCells.Count; i++)
@@ -110,7 +151,7 @@ namespace _CakeMaster._Scripts.GameplayRelated
                 totalAvailableSlices += selectedCells[i].containedCake.GetActivatedSlices();
             }
             
-            for (int i = selectedCells.Count - 1; i >= 0; i--)
+            for (int i = selectedCells.Count - 1; i > 0; i--)
             {
                 var targetCake = selectedCells[i].containedCake;
                 int currentSlices = targetCake.GetActivatedSlices();
@@ -122,7 +163,8 @@ namespace _CakeMaster._Scripts.GameplayRelated
 
                 if (toAdd > 0)
                 {
-                    try
+                    targetCake.AddSlices(toAdd, selectedCells[i - 1].transform.position);
+                    /*try
                     {
                         if (selectedCells[i - 1] != null || selectedCells != null)
                             targetCake.AddSlices(toAdd, selectedCells[i - 1].transform.position);
@@ -130,7 +172,7 @@ namespace _CakeMaster._Scripts.GameplayRelated
                     catch
                     {
                         
-                    }
+                    }*/
                     
                     totalAvailableSlices -= toAdd;
                     
@@ -157,6 +199,7 @@ namespace _CakeMaster._Scripts.GameplayRelated
                         yield return new WaitForSeconds(0.35f);
                         //DetectTheListFamily(selectedCells[i]);
                     }
+                    GameController.instance.UpdateMoves();
                 }
                 
                 if (totalAvailableSlices <= 0)
@@ -166,16 +209,20 @@ namespace _CakeMaster._Scripts.GameplayRelated
             StartCoroutine(AfterSortState());
         }
 
+        private GridCell lastWorkingCell = null;
         public void RefillGridCell(GridCell gridCell)
         {
             List<GridCell> foundList = gridCellsList.FirstOrDefault(subList => subList.Contains(gridCell));
             //Debug.Log($"GRID cells list={gridCellsList.Count} ** FoundList={foundList[0].name} ");
 
+            if (foundList.Contains(lastWorkingCell) && foundList.Contains(gridCell)) return;
+            lastWorkingCell = gridCell;
+            
+            //find the gap num
+            //run loop matching that gap step
+            //shift cakes matching that gap step
             int gridIndex = foundList.IndexOf(gridCell);
-            Debug.Log($"Found gridCell: {gridIndex}");
-            int emptyIndex = -1; // Track the lowest empty cell index
-
-            for (int i = gridIndex - 1; i >= 0; i--) // Start from bottom to top
+            for (int i = gridIndex - 1; i >= 0; i--) 
             {
                 CakeElement containedCake = foundList[i].containedCake;
                 if (containedCake != null)
@@ -194,7 +241,6 @@ namespace _CakeMaster._Scripts.GameplayRelated
             for(int i = 0; i < selectedCells.Count; i++)
                 selectedCells[i].ToggleHighlighter(false);
             selectedCells = new List<GridCell>();
-
             yield return new WaitForSeconds(0.35f);
             MainController.instance.SetActionType(GameState.Refilling);
         }

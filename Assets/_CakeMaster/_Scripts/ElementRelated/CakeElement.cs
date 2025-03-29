@@ -63,6 +63,7 @@ public class CakeElement : MonoBehaviour
         {
             GameObject toActivate = slices[activatedSlices.Count + i];
             toActivate.SetActive(true);
+            toActivate.transform.DORotate(Vector3.zero, 0.35f).From();
             toActivate.transform.DOMove(position, 0.35f).From();
         }
         UpdateActivatedSlices();
