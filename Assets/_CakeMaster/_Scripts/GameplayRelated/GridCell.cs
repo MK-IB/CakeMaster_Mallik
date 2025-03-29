@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using _CakeMaster._Scripts.ControllerRelated;
 using _CakeMaster._Scripts.ElementRelated;
+using DG.Tweening;
 using UnityEngine;
 
 namespace _CakeMaster._Scripts.GameplayRelated
@@ -39,7 +40,7 @@ namespace _CakeMaster._Scripts.GameplayRelated
             if (newState == GameState.Refilling)
             {
                 if(containedCake == null)
-                    _gridSelection.RefillGridCell(this);
+                    StartCoroutine(_gridSelection.RefillGridCell(this));
                 else if(!containedCake.gameObject.activeInHierarchy || containedCake.GetActivatedSlices() == 0)
                 {
                     StartCoroutine(CheckRefill());
@@ -47,13 +48,22 @@ namespace _CakeMaster._Scripts.GameplayRelated
                 
             }
 
+            if (newState == GameState.RecheckFill)
+            {
+                if(containedCake == null)
+                    InitiateCakes();
+                else if(!containedCake.gameObject.activeInHierarchy || containedCake.GetActivatedSlices() == 0)
+                {
+                    InitiateCakes();
+                }
+            }
         }
 
         IEnumerator CheckRefill()
         {
             Destroy(containedCake.gameObject);
             yield return null;
-            _gridSelection.RefillGridCell(this);
+            StartCoroutine(_gridSelection.RefillGridCell(this));
             Debug.Log($"EMPTY GRID = {transform.name}");
         }
         
@@ -64,6 +74,7 @@ namespace _CakeMaster._Scripts.GameplayRelated
             GameObject target = cakes[Random.Range(0, cakes.Count)];
             Vector3 spawnPos = transform.position + Vector3.up * 0.3f;
             GameObject fullCake = Instantiate(target, spawnPos, Quaternion.identity);
+            fullCake.transform.DOMove(spawnPos + Vector3.forward * 1, 0.35f).From().SetEase(Ease.OutBounce);
             //Debug.Log("FULL CAKE" + fullCake.name);
             containedCake = fullCake.GetComponent<CakeElement>();
             _activeSlicesNumber = containedCake.ActivateSlices();
@@ -78,8 +89,9 @@ namespace _CakeMaster._Scripts.GameplayRelated
             _animator = containedCake.GetComponent<Animator>();
         }
 
-        public void ToggleHighlighter(bool state)
+        public void ToggleHighlighter(bool state, Color highlightCol)
         {
+            highlighter.GetComponent<SpriteRenderer>().color = highlightCol;
             highlighter.SetActive(state);
             _animator.SetBool("scaleDown", state);
             if(state)containedCake.SelectionFx();

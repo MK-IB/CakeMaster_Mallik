@@ -12,9 +12,12 @@ public class CakeElement : MonoBehaviour
     [SerializeField] private List<GameObject> slices;
     [SerializeField] private ParticleSystem selectionFx;
     private List<GameObject> activatedSlices = new List<GameObject>();
-    public CakeColors cakeColor; 
+    public CakeColors cakeColor;
+    private TrailRenderer _trailRenderer;
     void Awake()
     {
+        _trailRenderer = GetComponent<TrailRenderer>();
+        _trailRenderer.enabled = false;
         foreach (var slice in slices)
             slice.SetActive(false);
         string objectName = transform.name;
@@ -106,8 +109,10 @@ public class CakeElement : MonoBehaviour
     IEnumerator MoveAlongCurve(Transform obj, Vector3 start, Vector3 end, float duration)
     {
         transform.DORotate(transform.eulerAngles + Vector3.up * 180, 0.35f);
-
+        SoundsController.instance.PlayClip(SoundsController.instance.cakeFormed);
+        _trailRenderer.enabled = true;
         yield return new WaitForSeconds(0.35f);
+        SoundsController.instance.PlayClip(SoundsController.instance.cakeMoving);
         // Midpoint for curve bending sideways along X axis
         Vector3 direction = (Random.value > 0.5f) ? Vector3.right : Vector3.left;
         Vector3 control = (start + end) / 2 + direction * 2f;

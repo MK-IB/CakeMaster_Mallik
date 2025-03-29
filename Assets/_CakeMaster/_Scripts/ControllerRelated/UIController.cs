@@ -1,3 +1,4 @@
+using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -50,7 +51,7 @@ namespace _CakeMaster._Scripts.ControllerRelated
             movesText.text = val.ToString();
         }
         
-        /*private void OnEnable()
+        private void OnEnable()
         {
             MainController.GameStateChanged += GameManager_GameStateChanged;
         }
@@ -62,16 +63,22 @@ namespace _CakeMaster._Scripts.ControllerRelated
         {
             if(newState==GameState.Levelwin)
             {
-                winPanel.SetActive(true);
-                //SoundsController.instance.PlaySound(SoundsController.instance.win);
+                StartCoroutine(ShowPanel(true, 2));
             }
 
             if (newState == GameState.Levelfail)
             {
-                failPanel.SetActive(true);
-                //SoundsController.instance.PlaySound(SoundsController.instance.fail);
+                StartCoroutine(ShowPanel(false, 0.5f));
             }
-        }*/
+        }
+
+        IEnumerator ShowPanel(bool isWin, float duration)
+        {
+            yield return new WaitForSeconds(duration);
+            if(isWin)
+                winPanel.SetActive(true);
+            else failPanel.SetActive(true);
+        }
         
     }   
 }

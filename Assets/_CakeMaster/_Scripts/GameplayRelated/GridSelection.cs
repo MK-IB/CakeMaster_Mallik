@@ -119,7 +119,8 @@ namespace _CakeMaster._Scripts.GameplayRelated
                     }
 
                     selectedCells.Add(gridCell);
-                    gridCell.ToggleHighlighter(true);
+                    gridCell.ToggleHighlighter(true, colorMapping[selectedCells[0].CakeColor]);
+                    SoundsController.instance.PlayClip(SoundsController.instance.tap);
                     UpdateLineRenderer();
                 }
             }
@@ -140,7 +141,7 @@ namespace _CakeMaster._Scripts.GameplayRelated
             if (selectedCells.Count < 2)
             {
                 for(int i = 0; i < selectedCells.Count; i++)
-                    selectedCells[i].ToggleHighlighter(false);
+                    selectedCells[i].ToggleHighlighter(false, Color.white);
                 selectedCells = new List<GridCell>();
                 yield break;
             }
@@ -200,6 +201,7 @@ namespace _CakeMaster._Scripts.GameplayRelated
                         //DetectTheListFamily(selectedCells[i]);
                     }
                     GameController.instance.UpdateMoves();
+                    MainController.instance.SetActionType(GameState.RecheckFill);
                 }
                 
                 if (totalAvailableSlices <= 0)
@@ -210,17 +212,13 @@ namespace _CakeMaster._Scripts.GameplayRelated
         }
 
         private GridCell lastWorkingCell = null;
-        public void RefillGridCell(GridCell gridCell)
+        public IEnumerator RefillGridCell(GridCell gridCell)
         {
             List<GridCell> foundList = gridCellsList.FirstOrDefault(subList => subList.Contains(gridCell));
             //Debug.Log($"GRID cells list={gridCellsList.Count} ** FoundList={foundList[0].name} ");
 
-            if (foundList.Contains(lastWorkingCell) && foundList.Contains(gridCell)) return;
+            if (foundList.Contains(lastWorkingCell) && foundList.Contains(gridCell)) yield break;
             lastWorkingCell = gridCell;
-            
-            //find the gap num
-            //run loop matching that gap step
-            //shift cakes matching that gap step
             int gridIndex = foundList.IndexOf(gridCell);
             for (int i = gridIndex - 1; i >= 0; i--) 
             {
@@ -229,17 +227,18 @@ namespace _CakeMaster._Scripts.GameplayRelated
                 {
                     GridCell belowCell = foundList[i + 1];
                     belowCell.containedCake = containedCake;
-                    containedCake.transform.DOMove(belowCell.transform.position, 0.25f);
+                    containedCake.transform.DOMove(belowCell.transform.position, 0.35f).SetEase(Ease.OutBounce);
                     belowCell.SetupContainedCake();
                 }
             }
 
-            MainController.instance.SetActionType(GameState.Gameplay);
+            yield return null;
+            MainController.instance.SetActionType(GameState.RecheckFill);
         }
         IEnumerator AfterSortState()
         {
             for(int i = 0; i < selectedCells.Count; i++)
-                selectedCells[i].ToggleHighlighter(false);
+                selectedCells[i].ToggleHighlighter(false, Color.white);
             selectedCells = new List<GridCell>();
             yield return new WaitForSeconds(0.35f);
             MainController.instance.SetActionType(GameState.Refilling);

@@ -1,5 +1,7 @@
 using System;
+using DG.Tweening;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace _CakeMaster._Scripts.ControllerRelated
 {
@@ -7,6 +9,7 @@ namespace _CakeMaster._Scripts.ControllerRelated
     {
         public static GameController instance;
         [SerializeField] private int goal, moves;
+        [SerializeField] private GameObject confettiFx;
 
         private void Awake()
         {
@@ -24,7 +27,13 @@ namespace _CakeMaster._Scripts.ControllerRelated
             if(goal > 0)goal -= 1;
             UIController.instance.UpdateGoalUi(goal);
             if (goal == 0)
+            {
                 MainController.instance.SetActionType(GameState.Levelwin);
+                DOVirtual.DelayedCall(1f, ()=>
+                {
+                    confettiFx.SetActive(true);
+                }); 
+            }
         }
         public void UpdateMoves()
         {
@@ -32,6 +41,11 @@ namespace _CakeMaster._Scripts.ControllerRelated
             UIController.instance.UpdateMovesUi(moves);
             if (moves == 0 && goal > 0)
                 MainController.instance.SetActionType(GameState.Levelfail);
+        }
+
+        public void OnClick_ReloadButton()
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
         
     }
