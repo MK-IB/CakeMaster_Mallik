@@ -2,7 +2,6 @@ using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-
 //using DG.Tweening;
 
 namespace _CakeMaster._Scripts.ControllerRelated
@@ -30,12 +29,9 @@ namespace _CakeMaster._Scripts.ControllerRelated
         {
             Vector3 screenPos = uiElement.position;
 
-            // Calculate the screen Z (distance from camera to desired world Z)
-            float zDistance = Mathf.Abs(worldZ - Camera.main.transform.position.y); // Y used if top-down
+            float zDistance = Mathf.Abs(worldZ - Camera.main.transform.position.y);
 
             screenPos.z = zDistance;
-
-            // Convert to world point
             return Camera.main.ScreenToWorldPoint(screenPos);
         }
 

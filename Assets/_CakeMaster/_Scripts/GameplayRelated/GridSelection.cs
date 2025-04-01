@@ -188,7 +188,7 @@ namespace _CakeMaster._Scripts.GameplayRelated
 
                         for (int s = 0; s < slicesFromThisCake; s++)
                         {
-                            donorCake.DeactivateOneSlice(); // <-- You'll need this method
+                            donorCake.DeactivateOneSlice();
                             slicesToTake--;
                         }
                     }
@@ -205,7 +205,7 @@ namespace _CakeMaster._Scripts.GameplayRelated
                 }
                 
                 if (totalAvailableSlices <= 0)
-                    break; // Stop if we've used all available slices
+                    break; 
             }
             
             StartCoroutine(AfterSortState());

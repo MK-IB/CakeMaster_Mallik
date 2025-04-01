@@ -27,13 +27,13 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/Assets/_CakeMaster/_Scripts/ControllerRelated/UIController.cs" />
         <option value="$PROJECT_DIR$/Assets/_CakeMaster/_Scripts/ControllerRelated/MainController.cs" />
         <option value="$PROJECT_DIR$/Assets/_CakeMaster/_Scripts/ControllerRelated/SoundsController.cs" />
         <option value="$PROJECT_DIR$/Assets/_CakeMaster/_Scripts/ControllerRelated/GameController.cs" />
         <option value="$PROJECT_DIR$/Assets/_CakeMaster/_Scripts/ElementRelated/CakeElement.cs" />
-        <option value="$PROJECT_DIR$/Assets/_CakeMaster/_Scripts/GameplayRelated/GridSelection.cs" />
         <option value="$PROJECT_DIR$/Assets/_CakeMaster/_Scripts/GameplayRelated/GridCell.cs" />
+        <option value="$PROJECT_DIR$/Assets/_CakeMaster/_Scripts/GameplayRelated/GridSelection.cs" />
+        <option value="$PROJECT_DIR$/Assets/_CakeMaster/_Scripts/ControllerRelated/UIController.cs" />
       </list>
     </option>
   </component>
