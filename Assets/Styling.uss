@@ -1,0 +1,15 @@
+.button {
+    -unity-font-style: bold;
+    font-size: 16px;
+    width: 100px;
+    color: rgb(255, 255, 255);
+    background-color: rgb(64, 188, 255);
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+    border-bottom-left-radius: 4px;
+    border-left-color: rgb(186, 219, 245);
+    border-right-color: rgb(186, 219, 245);
+    border-top-color: rgb(186, 219, 245);
+    border-bottom-color: rgb(186, 219, 245);
+}
