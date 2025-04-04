@@ -43,7 +43,7 @@ namespace _CakeMaster._Scripts.ControllerRelated
 
         public void UpdateMovesUi(int val)
         {
-            Debug.Log("UpdateMovesUi");
+            //Debug.Log("UpdateMovesUi");
             movesText.text = val.ToString();
         }
         

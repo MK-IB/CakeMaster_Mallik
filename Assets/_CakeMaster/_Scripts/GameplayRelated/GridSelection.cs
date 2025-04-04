@@ -135,6 +135,7 @@ namespace _CakeMaster._Scripts.GameplayRelated
             }
         }
 
+        public List<GameObject> totalAvailableSlicesList = new List<GameObject>();
         IEnumerator SortSelectedCells()
         {
             lineRenderer.positionCount = 0;
@@ -147,12 +148,20 @@ namespace _CakeMaster._Scripts.GameplayRelated
             }
             MainController.instance.SetActionType(GameState.Sorting);
             int totalAvailableSlices = 0;
-            for (int i = 0; i < selectedCells.Count - 1; i++)
+            //totalAvailableSlicesList = new List<GameObject>();
+            for (int i = selectedCells.Count - 2; i >= 0; i--)
             {
-                totalAvailableSlices += selectedCells[i].containedCake.GetActivatedSlices();
+                CakeElement cakeElement = selectedCells[i].containedCake;
+                List<GameObject> activatedSlicesList = cakeElement.GetActivatedSlicesList();
+                for (int j = 0; j < activatedSlicesList.Count; j++)
+                {
+                    totalAvailableSlicesList.Add(activatedSlicesList[j]);
+                }
             }
+            totalAvailableSlices = totalAvailableSlicesList.Count;
+            Debug.Log($"totalAvailableSlices: {totalAvailableSlices}");
             
-            for (int i = selectedCells.Count - 1; i >= 0; i--)
+            for (int i = selectedCells.Count - 1; i > 0; i--)
             {
                 var targetCake = selectedCells[i].containedCake;
                 int currentSlices = targetCake.GetActivatedSlices();
@@ -160,36 +169,20 @@ namespace _CakeMaster._Scripts.GameplayRelated
                 if (currentSlices >= 6) continue;
 
                 int needed = 6 - currentSlices;
-                var donorCake = (i - 1) >= 0 ?selectedCells[i - 1].containedCake : null;
-                // var donorSlices = donorCake.GetActivatedSlices();
                 int toAdd = Mathf.Min(needed, totalAvailableSlices);
 
                 if (toAdd > 0)
                 {
-                    targetCake.AddSlices(toAdd, (i - 1) >= 0 ?selectedCells[i - 1].transform.position:new Vector3());
+                    targetCake.AddSlices(toAdd, ref totalAvailableSlicesList);
                     totalAvailableSlices -= toAdd;
-                    for (int j = 0; j < toAdd; j++)
-                    {
-                        donorCake.DeactivateOneSlice();
-                    }
-                    
-                    /*if(targetCake.GetActivatedSlices() >=6)
-                    {
-                        //yield return new WaitForSeconds(0.35f);
-                        targetCake.AnimateCakeOnSorted();
-                        GameController.instance.UpdateGoal();
-                        //yield return new WaitForSeconds(0.35f);
-                        //DetectTheListFamily(selectedCells[i]);
-                    }*/
-                    GameController.instance.UpdateMoves();
-                    //MainController.instance.SetActionType(GameState.RecheckFill);
                 }
                 
                 if (totalAvailableSlices <= 0)
                     break; 
             }
 
-            yield return new WaitForSeconds(0.5f);
+            totalAvailableSlicesList = new List<GameObject>();
+            yield return new WaitForSeconds(0.85f);
             for (int i = 0; i < selectedCells.Count; i++)
             {
                 if(selectedCells[i].containedCake.GetActivatedSlices() >= 6)
@@ -198,6 +191,7 @@ namespace _CakeMaster._Scripts.GameplayRelated
                     GameController.instance.UpdateGoal();
                 }
             }
+            GameController.instance.UpdateMoves();
             
             StartCoroutine(AfterSortState());
         }

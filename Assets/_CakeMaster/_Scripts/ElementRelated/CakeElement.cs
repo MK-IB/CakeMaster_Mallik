@@ -60,17 +60,41 @@ public class CakeElement : MonoBehaviour
         return activatedSlices.Count;
     }
 
-    public void AddSlices(int num, Vector3 position)
+    public List<GameObject> GetActivatedSlicesList()
+    {
+        return activatedSlices;
+    }
+
+    public void AddSlices(int num, ref List<GameObject> slicesList)
     {
         for (int i = 0; i < num; i++)
         {
             GameObject toActivate = slices[activatedSlices.Count + i];
             toActivate.SetActive(true);
+            Transform sliceTransform = slicesList[0].transform;
+            sliceTransform.gameObject.SetActive(false);
+            sliceTransform.parent.GetComponent<CakeElement>().UpdateActivatedSlices();
+            slicesList.RemoveAt(0);
             toActivate.transform.DORotate(Vector3.zero, 0.35f).From();
-            toActivate.transform.DOMove(position, 0.35f).From();
+            //StartCoroutine(SliceRotationAnimation(toActivate.transform));
+            toActivate.transform.DOMove(sliceTransform.position, 0.35f).From();
         }
         UpdateActivatedSlices();
     }
+
+    IEnumerator SliceRotationAnimation(Transform targetSlice)
+    {
+        Vector3 targetRotation = targetSlice.localEulerAngles;
+        float duration = 0.35f;
+        float elapsedTime = 0;
+        targetSlice.localEulerAngles = Vector3.zero;
+        while (targetSlice.localEulerAngles.y < targetSlice.localEulerAngles.y)
+        {
+            targetSlice.localEulerAngles += Vector3.Lerp(targetSlice.localEulerAngles, targetRotation, elapsedTime / duration);
+            yield return null;
+        }
+    }
+    
 
     void UpdateActivatedSlices()
     {
