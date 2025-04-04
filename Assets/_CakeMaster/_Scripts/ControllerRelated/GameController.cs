@@ -22,6 +22,12 @@ namespace _CakeMaster._Scripts.ControllerRelated
             UIController.instance.UpdateMovesUi(moves);
         }
 
+        private void Update()
+        {
+            if(Input.GetMouseButtonDown(1))
+                OnClick_ReloadButton();
+        }
+
         public void UpdateGoal()
         {
             if(goal > 0)goal -= 1;

@@ -39,12 +39,12 @@ namespace _CakeMaster._Scripts.GameplayRelated
         {
             if (newState == GameState.Refilling)
             {
-                if(containedCake == null)
+                /*if(containedCake == null)
                     StartCoroutine(_gridSelection.RefillGridCell(this));
                 else if(!containedCake.gameObject.activeInHierarchy || containedCake.GetActivatedSlices() == 0)
                 {
                     StartCoroutine(CheckRefill());
-                }
+                }*/
                 
             }
 
