@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using _CakeMaster._Scripts.ControllerRelated;
 using _CakeMaster._Scripts.GameplayRelated;
 using DG.Tweening;
@@ -73,13 +74,17 @@ public class CakeElement : MonoBehaviour
             toActivate.SetActive(true);
             Transform sliceTransform = slicesList[0].transform;
             sliceTransform.gameObject.SetActive(false);
-            sliceTransform.parent.GetComponent<CakeElement>().UpdateActivatedSlices();
+            StartCoroutine(sliceTransform.parent.GetComponent<CakeElement>().UpdateActivatedSlices(0.4f));
             slicesList.RemoveAt(0);
             toActivate.transform.DORotate(Vector3.zero, 0.35f).From();
             //StartCoroutine(SliceRotationAnimation(toActivate.transform));
             toActivate.transform.DOMove(sliceTransform.position, 0.35f).From();
         }
-        UpdateActivatedSlices();
+
+        DOVirtual.DelayedCall(0.4f, () =>
+        {
+            StartCoroutine(UpdateActivatedSlices(0));
+        });
     }
 
     IEnumerator SliceRotationAnimation(Transform targetSlice)
@@ -96,7 +101,7 @@ public class CakeElement : MonoBehaviour
     }
     
 
-    void UpdateActivatedSlices()
+    IEnumerator UpdateActivatedSlices(float waitTime)
     {
         activatedSlices = new List<GameObject>();
         for (int i = 0; i < slices.Count; i++)
@@ -104,7 +109,10 @@ public class CakeElement : MonoBehaviour
             if(slices[i].activeSelf)
                 activatedSlices.Add(slices[i]);
         }
-        StartCoroutine(RotateCakeToAlign(activatedSlices.Count));
+
+        yield return new WaitForSeconds(waitTime);
+        if(activatedSlices.Count >= 1 && activatedSlices.Count < 6)
+            StartCoroutine(RotateCakeToAlign(activatedSlices.Count));
     }
 
     public void DeactivateSlices(int num)
@@ -113,14 +121,14 @@ public class CakeElement : MonoBehaviour
         {
             activatedSlices[i].SetActive(false);
         }
-        UpdateActivatedSlices();
+        StartCoroutine(UpdateActivatedSlices(0));
     }
 
     public void DeactivateOneSlice()
     {
         if (activatedSlices.Count <= 0) return;
         activatedSlices[activatedSlices.Count - 1].SetActive(false);
-        UpdateActivatedSlices();
+        StartCoroutine(UpdateActivatedSlices(0));
     }
 
     public void AnimateCakeOnSorted()

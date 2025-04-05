@@ -5,11 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c8aae103-4afd-4511-9541-a5f57987d843" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.CakeMaster_Mallik/.idea/indexLayout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.CakeMaster_Mallik/.idea/indexLayout.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.CakeMaster_Mallik/.idea/.idea.CakeMaster_Mallik.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.CakeMaster_Mallik/.idea/contentModel.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.CakeMaster_Mallik/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.CakeMaster_Mallik/.idea/projectSettingsUpdater.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.CakeMaster_Mallik/.idea/projectSettingsUpdater.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.CakeMaster_Mallik/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.CakeMaster_Mallik/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_CakeMaster/_Scripts/ControllerRelated/UIController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_CakeMaster/_Scripts/ControllerRelated/UIController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.CakeMaster_Mallik/riderModule.iml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/_CakeMaster/_Scripts/ElementRelated/CakeElement.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_CakeMaster/_Scripts/ElementRelated/CakeElement.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_CakeMaster/_Scripts/GameplayRelated/GridSelection.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_CakeMaster/_Scripts/GameplayRelated/GridSelection.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,6 +46,9 @@
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
   </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 8
+}]]></component>
   <component name="ProjectId" id="2urDIiGrU8e7R5L67nG5nZHUzQ0" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -51,8 +56,11 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "RunOnceActivity.git.unshallow": "true",
     "git-widget-placeholder": "main",
-    "node.js.selected.package.tslint": "(autodetect)"
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
   <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
@@ -99,7 +107,7 @@
       <method v="2" />
     </configuration>
   </component>
-  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="false" />
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <created>1743008391791</created>
@@ -111,6 +119,7 @@
       <workItem from="1743150940765" duration="22291000" />
       <workItem from="1743210129897" duration="8865000" />
       <workItem from="1743336950361" duration="4864000" />
+      <workItem from="1743823795468" duration="47000" />
     </task>
     <servers />
   </component>
