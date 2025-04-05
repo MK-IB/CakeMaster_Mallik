@@ -29,6 +29,7 @@ namespace _CakeMaster._Scripts.GameplayRelated
         
         private LineRenderer lineRenderer;
         Dictionary<CakeColors, Color> colorMapping = new Dictionary<CakeColors, Color>();
+        private float _gridDistVert;
         void Awake()
         {
             ArrangeGridsInArray();
@@ -45,6 +46,8 @@ namespace _CakeMaster._Scripts.GameplayRelated
             colorMapping.Add(CakeColors.Red, red);
             colorMapping.Add(CakeColors.Brown, brown);
             SetupLineRenderer();
+            _gridDistVert = Vector3.Distance(gridCellsList[0][0].transform.position, gridCellsList[1][0].transform.position);
+            //Debug.Log($"Grid Dist Vert = {_gridDistVert}");
         }
         void SetupLineRenderer()
         {
@@ -206,22 +209,44 @@ namespace _CakeMaster._Scripts.GameplayRelated
 
             if (foundList.Contains(lastWorkingCell) && foundList.Contains(gridCell)) yield break;
             lastWorkingCell = gridCell;
-            Debug.Log("Refill called");
-            int gridIndex = foundList.IndexOf(gridCell);
             
-            for (int i = gridIndex - 1; i >= 0; i--) 
+            int gridIndex = foundList.IndexOf(gridCell);
+            Debug.Log("GRID INDEX = " + gridIndex);
+            
+            List<CakeElement> nonEmptyCakes = new List<CakeElement>();
+            for (int i = 0 ; i < foundList.Count; i++)
             {
-                CakeElement containedCake = foundList[i].containedCake;
-                if (containedCake != null)
+                if(foundList[i].containedCake != null)
                 {
-                    GridCell belowCell = foundList[i + 1];
-                    belowCell.containedCake = containedCake;
-                    containedCake.transform.DOMove(belowCell.transform.position, 0.35f).SetEase(Ease.OutBounce);
-                    belowCell.SetupContainedCake();
+                    nonEmptyCakes.Add(foundList[i].containedCake);
+                    foundList[i].ClearCake();
                 }
             }
 
-            yield return null;
+            Debug.Log($"EMpty GriDs: {foundList.Count - nonEmptyCakes.Count}");
+            
+            int startIndex = foundList.Count - nonEmptyCakes.Count;
+            for (int i = 0; i < nonEmptyCakes.Count; i++)
+            {
+                GridCell targetCell = foundList[startIndex + i];
+                CakeElement cakeElement = nonEmptyCakes[i];
+                targetCell.SetCake(cakeElement);
+                cakeElement.transform.DOMove(targetCell.transform.position, 0.35f).SetEase(Ease.OutBounce);;
+            }
+            //for the empty grids created at TOP
+            int emptyGrids = foundList.Count - nonEmptyCakes.Count;
+            float _adder = 1.6f;
+            float startPosZ = foundList[0].transform.position.z + _adder;
+            for (int i = emptyGrids - 1; i >= 0; i--)
+            {
+                GridCell targetCell = foundList[i];
+                targetCell.InitiateCakes(foundList[0].transform.position + Vector3.forward * _adder);
+                _adder += _adder;
+            }
+            _adder = 1.6f;
+            
+            yield return new WaitForSeconds(0.35f);
+            MainController.instance.SetActionType(GameState.Gameplay);
         }
         IEnumerator AfterSortState()
         {

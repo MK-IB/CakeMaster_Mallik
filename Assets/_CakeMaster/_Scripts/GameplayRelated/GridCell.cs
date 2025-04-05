@@ -28,7 +28,7 @@ namespace _CakeMaster._Scripts.GameplayRelated
         {
             _gridSelection = transform.root.GetComponentInParent<GridSelection>();
             _cakesdetail = _gridSelection.cakesDetail;
-            InitiateCakes();
+            InitiateCakes(transform.position + Vector3.up * 0.3f + Vector3.forward * 1);
         }
         private void OnEnable()
         {
@@ -46,6 +46,7 @@ namespace _CakeMaster._Scripts.GameplayRelated
                     isEmpty = true;
                 else if(!containedCake.gameObject.activeSelf || containedCake.GetActivatedSlices() == 0)
                 {
+                    Destroy(containedCake.gameObject);
                     StartCoroutine(CheckRefill());
                 }
                 
@@ -62,23 +63,34 @@ namespace _CakeMaster._Scripts.GameplayRelated
             }*/
         }
 
+        public void ClearCake()
+        {
+            containedCake = null;
+        }
+
+        public void SetCake(CakeElement cake)
+        {
+            containedCake = cake;
+            SetupContainedCake();
+        }
+
         IEnumerator CheckRefill()
         {
-            Destroy(containedCake.gameObject);
+            isEmpty = true;
             yield return null;
-            //StartCoroutine(_gridSelection.RefillGridCell(this));
-            Debug.Log($"EMPTY GRID = {transform.name}");
+            StartCoroutine(_gridSelection.RefillGridCell(this));
+            Debug.Log($"EMPTY GRID = {containedCake}");
         }
         
 
-        void InitiateCakes()
+        public void InitiateCakes(Vector3 spawnPos)
         {
             List<GameObject> cakes = _cakesdetail.cakes;
             GameObject target = cakes[Random.Range(0, cakes.Count)];
-            Vector3 spawnPos = transform.position + Vector3.up * 0.3f;
             GameObject fullCake = Instantiate(target, spawnPos, Quaternion.identity);
-            fullCake.transform.DOMove(spawnPos + Vector3.forward * 1, 0.35f).From().SetEase(Ease.OutBounce);
+            fullCake.transform.DOMove(transform.position, 0.35f).SetEase(Ease.OutBounce);
             //Debug.Log("FULL CAKE" + fullCake.name);
+            isEmpty = false;
             containedCake = fullCake.GetComponent<CakeElement>();
             _activeSlicesNumber = containedCake.ActivateSlices();
             SetupContainedCake();
