@@ -158,7 +158,9 @@ namespace _CakeMaster._Scripts.GameplayRelated
                     totalAvailableSlicesList.Add(activatedSlicesList[j]);
                 }
             }
-            //totalAvailableSlices = totalAvailableSlicesList.Count;
+
+            for (int i = selectedCells.Count - 2; i >= 0; i--)
+                selectedCells[i].containedCake.ResetCakesData();
             
             for (int i = selectedCells.Count - 1; i > 0; i--)
             {

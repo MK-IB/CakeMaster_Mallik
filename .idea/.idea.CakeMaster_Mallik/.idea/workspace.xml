@@ -5,11 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c8aae103-4afd-4511-9541-a5f57987d843" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.CakeMaster_Mallik/.idea/contentModel.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.CakeMaster_Mallik/.idea/indexLayout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.CakeMaster_Mallik/.idea/indexLayout.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.CakeMaster_Mallik/.idea/modules.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.CakeMaster_Mallik/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.CakeMaster_Mallik/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.CakeMaster_Mallik/riderModule.iml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/_CakeMaster/_Scripts/ElementRelated/CakeElement.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_CakeMaster/_Scripts/ElementRelated/CakeElement.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/_CakeMaster/_Scripts/GameplayRelated/GridSelection.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_CakeMaster/_Scripts/GameplayRelated/GridSelection.cs" afterDir="false" />
     </list>
@@ -124,7 +120,7 @@
       <workItem from="1743336950361" duration="4864000" />
       <workItem from="1743823795468" duration="47000" />
       <workItem from="1743831680028" duration="8658000" />
-      <workItem from="1743843065618" duration="2692000" />
+      <workItem from="1743843065618" duration="3587000" />
     </task>
     <servers />
   </component>

@@ -38,28 +38,22 @@ public class CakeElement : MonoBehaviour
         StartCoroutine(RotateCakeToAlign(count));
         return count;
     }
-
-    public void SetFxColor(Color color)
-    {
-        // ParticleSystem.MainModule mainModule = selectionFx.main;
-        // mainModule.startColor = new ParticleSystem.MinMaxGradient(color);
-        selectionFx.startColor = color;
-    }
     IEnumerator RotateCakeToAlign(int count)
     {
         yield return new WaitForSeconds(0.35f);
         transform.DORotate(new Vector3(0, -count * 30, 0), 0.35f);
     }
 
-    public int GetEmptySpaces()
-    {
-        return slices.Count - activatedSlices.Count;
-    }
-
     public int GetActivatedSlices()
     {
         return activatedSlices.Count;
     }
+
+    public void ResetCakesData()
+    {
+        activatedSlices.Clear();
+    }
+    
 
     public List<GameObject> GetActivatedSlicesList()
     {
@@ -76,7 +70,7 @@ public class CakeElement : MonoBehaviour
             slicesList.RemoveAt(0);
             Debug.Log($"Active slices:== {slicesList.Count}");
             sliceTransform.gameObject.SetActive(false);
-            StartCoroutine(sliceTransform.parent.GetComponent<CakeElement>().UpdateActivatedSlices(0));
+            //StartCoroutine(sliceTransform.parent.GetComponent<CakeElement>().UpdateActivatedSlices(0));
 
             toActivate.transform.DORotate(Vector3.zero, 0.35f).From();
             toActivate.transform.DOMove(sliceTransform.position, 0.35f).From();
@@ -142,23 +136,6 @@ public class CakeElement : MonoBehaviour
         if(activatedSlices.Count >= 1 && activatedSlices.Count < 6)
             StartCoroutine(RotateCakeToAlign(activatedSlices.Count));
     }
-
-    public void DeactivateSlices(int num)
-    {
-        for (int i = num-1; i >= 0; i--)
-        {
-            activatedSlices[i].SetActive(false);
-        }
-        StartCoroutine(UpdateActivatedSlices(0));
-    }
-
-    public void DeactivateOneSlice()
-    {
-        if (activatedSlices.Count <= 0) return;
-        activatedSlices[activatedSlices.Count - 1].SetActive(false);
-        StartCoroutine(UpdateActivatedSlices(0));
-    }
-
     public void AnimateCakeOnSorted()
     {
         StartCoroutine(MoveAlongCurve(transform, transform.position, UIController.instance.cakeIconWorldPos, 0.35f));
