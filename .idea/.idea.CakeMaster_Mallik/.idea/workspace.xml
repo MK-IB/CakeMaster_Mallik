@@ -34,8 +34,8 @@
         <option value="$PROJECT_DIR$/Assets/_CakeMaster/_Scripts/ControllerRelated/UIController.cs" />
         <option value="$PROJECT_DIR$/Assets/_CakeMaster/_Scripts/ControllerRelated/GameController.cs" />
         <option value="$PROJECT_DIR$/Assets/_CakeMaster/_Scripts/ElementRelated/CakeElement.cs" />
-        <option value="$PROJECT_DIR$/Assets/_CakeMaster/_Scripts/GameplayRelated/GridCell.cs" />
         <option value="$PROJECT_DIR$/Assets/_CakeMaster/_Scripts/GameplayRelated/GridSelection.cs" />
+        <option value="$PROJECT_DIR$/Assets/_CakeMaster/_Scripts/GameplayRelated/GridCell.cs" />
       </list>
     </option>
   </component>

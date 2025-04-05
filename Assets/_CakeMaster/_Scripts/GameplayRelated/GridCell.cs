@@ -42,8 +42,11 @@ namespace _CakeMaster._Scripts.GameplayRelated
         {
             if (newState == GameState.Refilling)
             {
-                if(containedCake == null)
+                if (containedCake == null)
+                {
                     isEmpty = true;
+                    StartCoroutine(CheckRefill()); // <-- Add this
+                }
                 else if(!containedCake.gameObject.activeSelf || containedCake.GetActivatedSlices() == 0)
                 {
                     Destroy(containedCake.gameObject);
