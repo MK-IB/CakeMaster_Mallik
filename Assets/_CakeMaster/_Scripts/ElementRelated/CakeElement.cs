@@ -76,9 +76,11 @@ public class CakeElement : MonoBehaviour
             sliceTransform.gameObject.SetActive(false);
             StartCoroutine(sliceTransform.parent.GetComponent<CakeElement>().UpdateActivatedSlices(0.4f));
             slicesList.RemoveAt(0);
-            toActivate.transform.DORotate(Vector3.zero, 0.35f).From();
+            
+            /*toActivate.transform.DORotate(Vector3.zero, 0.55f).From();
+            toActivate.transform.DOMove(sliceTransform.position, 0.35f).From();*/
+            //StartCoroutine(SliceMoveAnimation(toActivate.transform, sliceTransform));
             //StartCoroutine(SliceRotationAnimation(toActivate.transform));
-            toActivate.transform.DOMove(sliceTransform.position, 0.35f).From();
         }
 
         DOVirtual.DelayedCall(0.4f, () =>
@@ -87,17 +89,40 @@ public class CakeElement : MonoBehaviour
         });
     }
 
+    IEnumerator SliceMoveAnimation(Transform targetSlice, Transform sourceSlice)
+    {
+        Vector3 targetPos = targetSlice.position;
+        float duration = 1.85f;
+        float elapsedTime = 0;
+        targetSlice.position = sourceSlice.position;
+
+        while (elapsedTime < duration)
+        {
+            targetSlice.position = Vector3.Lerp(targetSlice.position, targetPos, elapsedTime / duration);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        targetSlice.position = targetPos;
+    }
+
     IEnumerator SliceRotationAnimation(Transform targetSlice)
     {
+        Vector3 startRotation = Vector3.zero;
         Vector3 targetRotation = targetSlice.localEulerAngles;
         float duration = 0.35f;
         float elapsedTime = 0;
-        targetSlice.localEulerAngles = Vector3.zero;
-        while (targetSlice.localEulerAngles.y < targetSlice.localEulerAngles.y)
+        targetSlice.localEulerAngles = startRotation;
+        
+        while (elapsedTime < duration)
         {
-            targetSlice.localEulerAngles += Vector3.Lerp(targetSlice.localEulerAngles, targetRotation, elapsedTime / duration);
+            Vector3 smoothRot = Vector3.Slerp(startRotation, targetRotation, elapsedTime / duration);
+            targetSlice.localEulerAngles = smoothRot;
+            elapsedTime += Time.deltaTime;
             yield return null;
         }
+
+        targetSlice.localEulerAngles = targetRotation;
     }
     
 

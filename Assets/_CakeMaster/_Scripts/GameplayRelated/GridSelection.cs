@@ -146,7 +146,7 @@ namespace _CakeMaster._Scripts.GameplayRelated
                 selectedCells = new List<GridCell>();
                 yield break;
             }
-            MainController.instance.SetActionType(GameState.Sorting);
+            //MainController.instance.SetActionType(GameState.Sorting);
             int totalAvailableSlices = 0;
             //totalAvailableSlicesList = new List<GameObject>();
             for (int i = selectedCells.Count - 2; i >= 0; i--)
@@ -182,7 +182,7 @@ namespace _CakeMaster._Scripts.GameplayRelated
             }
 
             totalAvailableSlicesList = new List<GameObject>();
-            yield return new WaitForSeconds(0.85f);
+            yield return new WaitForSeconds(.5f);
             for (int i = 0; i < selectedCells.Count; i++)
             {
                 if(selectedCells[i].containedCake.GetActivatedSlices() >= 6)
