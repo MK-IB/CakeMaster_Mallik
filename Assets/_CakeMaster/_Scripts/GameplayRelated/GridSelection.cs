@@ -6,6 +6,7 @@ using _CakeMaster._Scripts.ControllerRelated;
 using _CakeMaster._Scripts.ElementRelated;
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 namespace _CakeMaster._Scripts.GameplayRelated
 {
@@ -86,6 +87,7 @@ namespace _CakeMaster._Scripts.GameplayRelated
         bool _canCheckGrid;
         void Update()
         {
+            if (EventSystem.current.currentSelectedGameObject) return;
             if(Input.GetMouseButtonDown(0))
                 _canCheckGrid = true;
             if(Input.GetMouseButtonUp(0))
@@ -130,11 +132,14 @@ namespace _CakeMaster._Scripts.GameplayRelated
         }
         void UpdateLineRenderer()
         {
+            Vector3 camForward = Camera.main.transform.forward;
+            float offsetAmount = 0.01f;
+            
             SetupLineColor(colorMapping[currentCakeColor]);
             lineRenderer.positionCount = selectedCells.Count;
             for (int i = 0; i < selectedCells.Count; i++)
             {
-                lineRenderer.SetPosition(i, selectedCells[i].transform.position);
+                lineRenderer.SetPosition(i, selectedCells[i].transform.position + camForward * offsetAmount);
             }
         }
 

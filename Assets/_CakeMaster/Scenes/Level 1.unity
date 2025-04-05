@@ -3537,7 +3537,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1110794015
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3802,8 +3802,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e1960c23e18b4ee490e4e0a5a5fdf46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  goal: 8
-  moves: 15
+  goal: 10
+  moves: 18
   confettiFx: {fileID: 1121386212}
 --- !u!114 &1221555318
 MonoBehaviour:
@@ -7037,6 +7037,7 @@ MonoBehaviour:
   - {fileID: 418383157}
   - {fileID: 872496709}
   currentCakeColor: 0
+  totalAvailableSlicesList: []
 --- !u!23 &23388524198321192
 MeshRenderer:
   m_ObjectHideFlags: 0

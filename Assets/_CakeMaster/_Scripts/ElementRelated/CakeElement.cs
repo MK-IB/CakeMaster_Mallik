@@ -41,7 +41,7 @@ public class CakeElement : MonoBehaviour
     IEnumerator RotateCakeToAlign(int count)
     {
         yield return new WaitForSeconds(0.35f);
-        transform.DORotate(new Vector3(0, -count * 30, 0), 0.35f);
+        transform.DORotate(new Vector3(0, -count * 30, 0), 0.5f);
     }
 
     public int GetActivatedSlices()
