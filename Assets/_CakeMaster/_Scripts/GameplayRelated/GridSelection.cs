@@ -158,27 +158,24 @@ namespace _CakeMaster._Scripts.GameplayRelated
                     totalAvailableSlicesList.Add(activatedSlicesList[j]);
                 }
             }
-            totalAvailableSlices = totalAvailableSlicesList.Count;
-            Debug.Log($"totalAvailableSlices: {totalAvailableSlices}");
+            //totalAvailableSlices = totalAvailableSlicesList.Count;
             
             for (int i = selectedCells.Count - 1; i > 0; i--)
             {
+                totalAvailableSlices = totalAvailableSlicesList.Count;
                 var targetCake = selectedCells[i].containedCake;
-                int currentSlices = targetCake.GetActivatedSlices();
+                int needed = 6 - targetCake.GetActivatedSlices();
+                Debug.Log($"totalAvailableSlices: {totalAvailableSlices} ** needed: {needed}");
+                if (needed <= 0) continue;
 
-                if (currentSlices >= 6) continue;
-
-                int needed = 6 - currentSlices;
                 int toAdd = Mathf.Min(needed, totalAvailableSlices);
+                if (toAdd <= 0) continue;
 
-                if (toAdd > 0)
-                {
-                    targetCake.AddSlices(toAdd, ref totalAvailableSlicesList);
-                    totalAvailableSlices -= toAdd;
-                }
+                yield return StartCoroutine(targetCake.AddSlices(toAdd, totalAvailableSlicesList));
                 
                 if (totalAvailableSlices <= 0)
-                    break; 
+                    break;
+                yield return new WaitForSeconds(0.1f);
             }
 
             totalAvailableSlicesList = new List<GameObject>();

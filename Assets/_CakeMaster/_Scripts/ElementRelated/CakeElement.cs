@@ -66,27 +66,27 @@ public class CakeElement : MonoBehaviour
         return activatedSlices;
     }
 
-    public void AddSlices(int num, ref List<GameObject> slicesList)
+    public IEnumerator AddSlices(int num, List<GameObject> slicesList)
     {
         for (int i = 0; i < num; i++)
         {
             GameObject toActivate = slices[activatedSlices.Count + i];
             toActivate.SetActive(true);
             Transform sliceTransform = slicesList[0].transform;
-            sliceTransform.gameObject.SetActive(false);
-            StartCoroutine(sliceTransform.parent.GetComponent<CakeElement>().UpdateActivatedSlices(0.4f));
             slicesList.RemoveAt(0);
-            
-            /*toActivate.transform.DORotate(Vector3.zero, 0.55f).From();
-            toActivate.transform.DOMove(sliceTransform.position, 0.35f).From();*/
+            Debug.Log($"Active slices:== {slicesList.Count}");
+            sliceTransform.gameObject.SetActive(false);
+            StartCoroutine(sliceTransform.parent.GetComponent<CakeElement>().UpdateActivatedSlices(0));
+
+            toActivate.transform.DORotate(Vector3.zero, 0.35f).From();
+            toActivate.transform.DOMove(sliceTransform.position, 0.35f).From();
             //StartCoroutine(SliceMoveAnimation(toActivate.transform, sliceTransform));
             //StartCoroutine(SliceRotationAnimation(toActivate.transform));
         }
 
-        DOVirtual.DelayedCall(0.4f, () =>
-        {
-            StartCoroutine(UpdateActivatedSlices(0));
-        });
+        //yield return new WaitForSeconds(num * 0.4f);
+        StartCoroutine(UpdateActivatedSlices(0));
+        yield return null;
     }
 
     IEnumerator SliceMoveAnimation(Transform targetSlice, Transform sourceSlice)
@@ -124,7 +124,11 @@ public class CakeElement : MonoBehaviour
 
         targetSlice.localEulerAngles = targetRotation;
     }
-    
+
+    private void Update()
+    {
+        
+    }
 
     IEnumerator UpdateActivatedSlices(float waitTime)
     {
@@ -134,7 +138,6 @@ public class CakeElement : MonoBehaviour
             if(slices[i].activeSelf)
                 activatedSlices.Add(slices[i]);
         }
-
         yield return new WaitForSeconds(waitTime);
         if(activatedSlices.Count >= 1 && activatedSlices.Count < 6)
             StartCoroutine(RotateCakeToAlign(activatedSlices.Count));
