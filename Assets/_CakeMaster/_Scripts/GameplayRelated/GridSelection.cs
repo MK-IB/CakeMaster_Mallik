@@ -167,7 +167,7 @@ namespace _CakeMaster._Scripts.GameplayRelated
                 totalAvailableSlices = totalAvailableSlicesList.Count;
                 var targetCake = selectedCells[i].containedCake;
                 int needed = 6 - targetCake.GetActivatedSlices();
-                Debug.Log($"totalAvailableSlices: {totalAvailableSlices} ** needed: {needed}");
+                //Debug.Log($"totalAvailableSlices: {totalAvailableSlices} ** needed: {needed}");
                 if (needed <= 0) continue;
 
                 int toAdd = Mathf.Min(needed, totalAvailableSlices);
@@ -177,7 +177,7 @@ namespace _CakeMaster._Scripts.GameplayRelated
                 
                 if (totalAvailableSlices <= 0)
                     break;
-                yield return new WaitForSeconds(0.1f);
+                //yield return new WaitForSeconds(0.1f);
             }
 
             totalAvailableSlicesList = new List<GameObject>();
@@ -187,12 +187,15 @@ namespace _CakeMaster._Scripts.GameplayRelated
                 if(selectedCells[i].containedCake.GetActivatedSlices() >= 6)
                 {
                     selectedCells[i].containedCake.AnimateCakeOnSorted();
+                    //StartCoroutine(RefillGridCell(selectedCells[i]));
                     GameController.instance.UpdateGoal();
                 }
             }
             GameController.instance.UpdateMoves();
-            
             StartCoroutine(AfterSortState());
+            
+            yield return new WaitForSeconds(1.0f);
+            MainController.instance.SetActionType(GameState.Refilling);
         }
 
         private GridCell lastWorkingCell = null;
@@ -203,7 +206,9 @@ namespace _CakeMaster._Scripts.GameplayRelated
 
             if (foundList.Contains(lastWorkingCell) && foundList.Contains(gridCell)) yield break;
             lastWorkingCell = gridCell;
+            Debug.Log("Refill called");
             int gridIndex = foundList.IndexOf(gridCell);
+            
             for (int i = gridIndex - 1; i >= 0; i--) 
             {
                 CakeElement containedCake = foundList[i].containedCake;
@@ -217,7 +222,6 @@ namespace _CakeMaster._Scripts.GameplayRelated
             }
 
             yield return null;
-            MainController.instance.SetActionType(GameState.RecheckFill);
         }
         IEnumerator AfterSortState()
         {
@@ -225,7 +229,6 @@ namespace _CakeMaster._Scripts.GameplayRelated
                 selectedCells[i].ToggleHighlighter(false, Color.white);
             selectedCells = new List<GridCell>();
             yield return new WaitForSeconds(0.35f);
-            MainController.instance.SetActionType(GameState.Refilling);
         }
     }
 }

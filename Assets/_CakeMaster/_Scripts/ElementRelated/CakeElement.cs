@@ -68,7 +68,7 @@ public class CakeElement : MonoBehaviour
             toActivate.SetActive(true);
             Transform sliceTransform = slicesList[0].transform;
             slicesList.RemoveAt(0);
-            Debug.Log($"Active slices:== {slicesList.Count}");
+            //Debug.Log($"Active slices:== {slicesList.Count}");
             sliceTransform.gameObject.SetActive(false);
             //StartCoroutine(sliceTransform.parent.GetComponent<CakeElement>().UpdateActivatedSlices(0));
 
@@ -170,8 +170,6 @@ public class CakeElement : MonoBehaviour
 
         obj.position = end;
         gameObject.SetActive(false);
-        yield return new WaitForSeconds(0.35f);
-        MainController.instance.SetActionType(GameState.Refilling);
     }
 
 }

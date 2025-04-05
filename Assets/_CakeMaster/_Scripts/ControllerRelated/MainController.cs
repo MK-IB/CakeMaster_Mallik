@@ -10,7 +10,6 @@ namespace _CakeMaster._Scripts.ControllerRelated
         Gameplay,
         Sorting,
         Refilling,
-        RecheckFill,
         Levelwin,
         Levelfail
     }

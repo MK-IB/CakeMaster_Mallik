@@ -17,6 +17,9 @@ namespace _CakeMaster._Scripts.GameplayRelated
         private GridSelection _gridSelection;
         
         public CakeElement containedCake;
+        private bool isEmpty = false;
+        
+        public bool IsEmpty { get => isEmpty; }
         public CakeColors CakeColor
         {
             get => _cakeColor;
@@ -39,16 +42,16 @@ namespace _CakeMaster._Scripts.GameplayRelated
         {
             if (newState == GameState.Refilling)
             {
-                /*if(containedCake == null)
-                    StartCoroutine(_gridSelection.RefillGridCell(this));
-                else if(!containedCake.gameObject.activeInHierarchy || containedCake.GetActivatedSlices() == 0)
+                if(containedCake == null)
+                    isEmpty = true;
+                else if(!containedCake.gameObject.activeSelf || containedCake.GetActivatedSlices() == 0)
                 {
                     StartCoroutine(CheckRefill());
-                }*/
+                }
                 
             }
 
-            if (newState == GameState.RecheckFill)
+            /*if (newState == GameState.RecheckFill)
             {
                 if(containedCake == null)
                     InitiateCakes();
@@ -56,14 +59,14 @@ namespace _CakeMaster._Scripts.GameplayRelated
                 {
                     InitiateCakes();
                 }
-            }
+            }*/
         }
 
         IEnumerator CheckRefill()
         {
             Destroy(containedCake.gameObject);
             yield return null;
-            StartCoroutine(_gridSelection.RefillGridCell(this));
+            //StartCoroutine(_gridSelection.RefillGridCell(this));
             Debug.Log($"EMPTY GRID = {transform.name}");
         }
         
