@@ -202,7 +202,7 @@ namespace _CakeMaster._Scripts.GameplayRelated
             GameController.instance.UpdateMoves();
             StartCoroutine(AfterSortState());
             
-            yield return new WaitForSeconds(1.0f);
+            yield return new WaitForSeconds(0.8f);
             MainController.instance.SetActionType(GameState.Refilling);
         }
 
@@ -249,7 +249,8 @@ namespace _CakeMaster._Scripts.GameplayRelated
                 _adder += _adder;
             }
             _adder = 1.6f;
-            
+
+            lastWorkingCell = null;
             yield return new WaitForSeconds(0.35f);
             MainController.instance.SetActionType(GameState.Gameplay);
         }
