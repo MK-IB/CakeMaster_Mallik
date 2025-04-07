@@ -35,7 +35,9 @@ public class CakeElement : MonoBehaviour
             slices[i].SetActive(true);
             activatedSlices.Add(slices[i]);
         }
-        StartCoroutine(RotateCakeToAlign(count));
+
+        transform.localEulerAngles = new Vector3(0, -count * 30, 0);
+        //StartCoroutine(RotateCakeToAlign(count));
         return count;
     }
     IEnumerator RotateCakeToAlign(int count)
